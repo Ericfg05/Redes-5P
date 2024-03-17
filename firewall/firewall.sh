@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # Limpando todas as regras existentes
 iptables -F
