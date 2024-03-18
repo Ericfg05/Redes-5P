@@ -139,5 +139,5 @@ se acontecer da forma correta ele ficará assim:
 
 ![ Redes-5P
 /imagens/print_dhcp.png
-](print_dhcp.png)
+](imagens/print_dhcp.png)
 
