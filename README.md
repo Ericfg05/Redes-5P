@@ -231,7 +231,7 @@ Assim você pode usar o comando "sudo docker build -f Dockerfile -t nome_imagem 
 ***O docker build deve ser feito na pasta a qual o Dockerfile está***
 
 
-***4-Testes***
+***3-Testes***
 
 Para testar você pode entrar no conteiner dns com o comando "sudo docker exec -it nome_do_container /bin/bash" e instale o ping com o comando "apt – get update && apt – get install -y iputils – ping", assim você pode rodar o comando ping ip_de_host ou ping_192.168.0.110 e será retornado o ping da sua maquina em milisegundos:
 
