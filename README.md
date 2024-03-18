@@ -180,3 +180,11 @@ assim faça o mesmo processo para o buildar a imagem,no entando, no docker run u
 ![ Redes-5P
 /imagens/dns.png
 ](imagens/dns.png)
+
+
+**Testes**
+
+Para testar você pode entrar no conteiner dns com o comando "sudo docker exec -it nome_do_container /bin/bash" e instale o ping com o comando "apt – get update && apt – get install -y iputils – ping", assim você pode rodar o comando ping ip_de_host ou ping_192.168.0.110 e será retornado o ping da sua maquina em milisegundos:
+![ Redes-5P
+/imagens/ping.png
+](imagens/ping.png)
