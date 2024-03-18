@@ -138,6 +138,6 @@ Assim que finalizar, no teminar crie digite "sudo docker build -f Dockerfile -t 
 se acontecer da forma correta ele ficará assim:
 
 ![ Redes-5P
-/print_dhcp.png
+/imagens/print_dhcp.png
 ](print_dhcp.png)
 
