@@ -1,4 +1,4 @@
-*Documentação*
+***Documentação***
 
 **0-Inicio**
 Para criarmos um servidor de redes, em que, o serviço DHCP, DNS e o de segurança Firewall em docker precisamos configurar alguns arquivos.
@@ -181,8 +181,57 @@ assim faça o mesmo processo para o buildar a imagem,no entando, no docker run u
 /imagens/dns.png
 ](imagens/dns.png)
 
+Para configurar o firewall, crie um outro Dockerfile no visual studio code e cole o codigo abaixo:
 
-**Testes**
+#Usando a imagem base Ubuntu
+FROM ubuntu:latest
+
+#Atualizando o repositório e instalando o firewall iptables
+RUN apt-get update && apt-get install -y iptables
+COPY firewall.sh /root/firewall.sh
+RUN  chmod +x /root/firewall.sh
+#Copiando o script de configuração do firewall para dentro do container
+COPY firewall.sh /root/firewall.sh
+
+#Definindo o script de configuração do firewall como executável
+RUN  chmod 777 /root/firewall.sh
+
+#Comando para executar o script de configuração do firewall
+CMD ["./root/firewall.sh"]
+
+
+Em seguida, crie um arquivo com o nome firewall.ssh e cole o codigo abaixo:
+
+
+#Limpando todas as regras existentes
+iptables -F
+iptables -X
+
+#Definindo a política padrão como DROP (bloquear tudo)
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+
+#Permitindo conexões de loopback
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+
+#Permitindo tráfego relacionado e estabelecido
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+#Permitindo tráfego DHCP
+iptables -A INPUT -p udp --dport 67:68 --sport 67:68 -j ACCEPT
+
+#Permitindo tráfego DNS
+iptables -A INPUT -p udp --dport 53 -j ACCEPT
+iptables -A INPUT -p tcp --dport 53 -j ACCEPT
+
+Assim você pode usar o comando "sudo docker build -f Dockerfile -t nome_imagem ." para buildar a sua imagem e em seguinda use: "sudo docker run --network container:nome_container_dhcpd --name name_container nome_imagem" para rodar o container.
+# Observação 
+***O docker build deve ser feito na pasta a qual o Dockerfile está***
+
+
+***Testes***
 
 Para testar você pode entrar no conteiner dns com o comando "sudo docker exec -it nome_do_container /bin/bash" e instale o ping com o comando "apt – get update && apt – get install -y iputils – ping", assim você pode rodar o comando ping ip_de_host ou ping_192.168.0.110 e será retornado o ping da sua maquina em milisegundos:
 
