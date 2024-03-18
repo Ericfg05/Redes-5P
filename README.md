@@ -141,3 +141,38 @@ se acontecer da forma correta ele ficará assim:
 /imagens/print_dhcp.png
 ](imagens/print_dhcp.png)
 
+Para configurar o dns, em outra pasta crie um arquivo Dockerfile e cole os comandos a baixo:
+
+FROM ubuntu:latest
+
+#Atualizando o repositório e instalando o servidor DNS BIND9
+RUN apt-get update && apt-get install -y bind9
+
+#Copiando o arquivo de configuração do DNS para dentro do container
+COPY named.conf /etc/bind/named.conf
+
+#Expondo a porta usada pelo servidor DNS
+EXPOSE 53/tcp
+EXPOSE 53/udp
+
+#Comando para iniciar o servidor DNS
+CMD ["/usr/sbin/named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind"]
+
+E o arquivo de configuração que deve ser criado com o nome:"named.conf e cole o codigo abaixo:
+
+options {
+    directory "/var/cache/bind";
+
+    // Seu provedor de DNS público ou outros servidores DNS
+    forwarders {
+        8.8.8.8;
+        8.8.4.4;
+    };
+
+    // Definindo as permissões para consultas externas
+    allow-query {
+        any;
+    };
+};
+
+assim faça o mesmo processo para o buildar a imagem,no entando, no docker run use esse sintaxe "sudo docker run --name nome_container --network container:nome_do_container_dhcp imagem". Nesse caso o comando usa "--network container:nome_do_container_dhcp" para conectar no container dhcp. Caso tudo esteja certo ele ficará assim: 
