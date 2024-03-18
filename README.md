@@ -71,8 +71,8 @@ INTERFACESv6=""
 
 Crie o dhclient.conf:
 
-# Configuration file for /sbin/dhclient.
-# This is a sample configuration file for dhclient. See dhclient.conf's
+#Configuration file for /sbin/dhclient.
+#This is a sample configuration file for dhclient. See dhclient.conf's
 #man page for more information about the syntax of this file
 #and a more comprehensive list of the parameters understood by
 #dhclient.
@@ -106,9 +106,9 @@ timeout 300;
 #reject 192.33.137.209;
 
 #alias {
-# interface "eth0";
-# fixed-address 192.5.5.213;
-# option subnet-mask 255.255.255.255;
+#interface "eth0";
+#fixed-address 192.5.5.213;
+#option subnet-mask 255.255.255.255;
 #}
 
 lease {
