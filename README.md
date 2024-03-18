@@ -137,3 +137,7 @@ lease 192.168.0.112{
 Assim que finalizar, no teminar crie digite "sudo docker build -f Dockerfile -t nome_da_imagem .". Dessa forma, a sua imagem do DHCP foi criado, e para executar use o comando "sudo docker run --name nome_do_container --network=bridge  id_imagem"
 se acontecer da forma correta ele ficará assim:
 
+![ Redes-5P
+/print_dhcp.png
+](print_dhcp.png)
+
