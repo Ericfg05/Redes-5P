@@ -176,3 +176,7 @@ options {
 };
 
 assim faça o mesmo processo para o buildar a imagem,no entando, no docker run use esse sintaxe "sudo docker run --name nome_container --network container:nome_do_container_dhcp imagem". Nesse caso o comando usa "--network container:nome_do_container_dhcp" para conectar no container dhcp. Caso tudo esteja certo ele ficará assim: 
+
+![ Redes-5P
+/imagens/dns.png
+](imagens/dns.png)
